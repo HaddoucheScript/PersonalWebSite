@@ -1,0 +1,4 @@
+body{background-color: rgb(166, 215, 215);}
+h1{text-transform: uppercase; font-size: 2rem;}
+body{touch-action: double-tap-zoom;}
+header{text-align: center;}
