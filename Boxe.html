@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boxing Game</title>
+<style>
+  .boxer {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+  }
+  #boxer1 {
+    left: 50px;
+  }
+  #boxer2 {
+    right: 50px;
+  }
+  #result {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+  }
+</style>
+</head>
+<body>
+
+<div id="boxer1" class="boxer">
+  <img src="boxer1.png" alt="Boxer 1">
+</div>
+<div id="boxer2" class="boxer">
+  <img src="boxer2.png" alt="Boxer 2">
+</div>
+<div id="result"></div>
+
+<script>
+  const boxer1 = document.getElementById('boxer1');
+  const boxer2 = document.getElementById('boxer2');
+  const resultDisplay = document.getElementById('result');
+  
+  let boxer1Health = 100;
+  let boxer2Health = 100;
+  
+  const attackInterval = 1000; // Interval between attacks in milliseconds
+  
+  function boxer1Attack() {
+    boxer2Health -= Math.floor(Math.random() * 10) + 1; // Random damage between 1 and 10
+    updateHealth();
+    checkWinner();
+  }
+  
+  function boxer2Attack() {
+    boxer1Health -= Math.floor(Math.random() * 10) + 1; // Random damage between 1 and 10
+    updateHealth();
+    checkWinner();
+  }
+  
+  function updateHealth() {
+    if (boxer1Health <= 0 || boxer2Health <= 0) {
+      return;
+    }
+    resultDisplay.textContent = `Boxer 1 Health: ${boxer1Health} - Boxer 2 Health: ${boxer2Health}`;
+  }
+  
+  function checkWinner() {
+    if (boxer1Health <= 0) {
+      resultDisplay.textContent = "Boxer 2 wins!";
+    } else if (boxer2Health <= 0) {
+      resultDisplay.textContent = "Boxer 1 wins!";
+    }
+  }
+  
+  setInterval(boxer1Attack, attackInterval);
+  setInterval(boxer2Attack, attackInterval);
+</script>
+
+</body>
+</html>
